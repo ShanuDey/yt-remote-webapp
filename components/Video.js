@@ -10,7 +10,6 @@ export const Video = ({ video }) => {
 
     // API endpoint where we send form data.
     const endpoint = `${process.env.REMOTE_HOST}/start_video`;
-    console.log(process.env.REMOTE_HOST);
 
     // Form the request for sending data to the server.
     const options = {

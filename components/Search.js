@@ -43,6 +43,10 @@ export const Search = () => {
     videosContext.setVideos(result);
   };
 
+  const handleCloseVideo = async () => {
+    await fetch(`${process.env.REMOTE_HOST}/close_video`);
+  };
+
   return (
     <div className='container mt-5'>
       <Form className='d-flex' onSubmit={handleSearch}>
@@ -55,6 +59,13 @@ export const Search = () => {
         />
         <Button variant='outline-success' type='submit'>
           Search
+        </Button>
+        <Button
+          variant='outline-danger'
+          className='ms-2'
+          onClick={handleCloseVideo}
+        >
+          Close
         </Button>
       </Form>
     </div>
