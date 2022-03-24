@@ -3,8 +3,6 @@ import { Card, Button } from 'react-bootstrap';
 import { sendPostRequest } from './Search';
 
 export const Video = ({ video }) => {
-  const views = String(video.views).padStart(10, ' ');
-
   const handleVideoPlay = async () => {
     const data = `video_url=${encodeURIComponent(video.url)}`;
 

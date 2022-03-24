@@ -5,7 +5,6 @@ import { Video } from './Video';
 
 export const VideoList = () => {
   const videosContext = useContext(VideosContext);
-  console.log('videos count : ', videosContext.videos.length);
 
   return (
     <div className='container mt-5'>
