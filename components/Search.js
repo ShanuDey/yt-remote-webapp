@@ -1,8 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
+import { RemoteContext } from '../contexts/RemoteContext';
 import { VideosContext } from '../contexts/VideosContext';
 
 export const Search = () => {
+  const remoteContext = useContext(RemoteContext);
   const videosContext = useContext(VideosContext);
 
   const handleSearch = async (event) => {
@@ -44,7 +46,7 @@ export const Search = () => {
   };
 
   const handleCloseVideo = async () => {
-    await fetch(`${process.env.REMOTE_HOST}/close_video`);
+    await fetch(`${remoteContext.remoteHost}/close_video`);
   };
 
   return (

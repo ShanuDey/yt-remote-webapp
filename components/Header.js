@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { RemoteContext } from '../contexts/RemoteContext';
 
 export const Header = () => {
+  const remoteContext = useContext(RemoteContext);
+
   const handleClick = async (e, path) => {
     if (path === '/reboot') {
-      await fetch(`${process.env.REMOTE_HOST}/reboot`);
+      await fetch(`${remoteContext.remoteHost}/reboot`);
     }
     if (path === '/shutdown') {
-      await fetch(`${process.env.REMOTE_HOST}/shutdown`);
+      await fetch(`${remoteContext.remoteHost}/shutdown`);
     }
   };
 
@@ -19,7 +22,7 @@ export const Header = () => {
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='me-auto'>
             <Nav.Link href='/'>Home</Nav.Link>
-            <Nav.Link href='#link'>Remote Setup</Nav.Link>
+            <Nav.Link href='/views/RemoteSetup'>Remote Setup</Nav.Link>
             <NavDropdown title='Settings' id='basic-nav-dropdown'>
               <NavDropdown.Item
                 href='/'

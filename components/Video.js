@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card, Button } from 'react-bootstrap';
-import { sendPostRequest } from './Search';
+import { RemoteContext } from '../contexts/RemoteContext';
 
 export const Video = ({ video }) => {
+  const remoteContext = useContext(RemoteContext);
+
   const handleVideoPlay = async () => {
     const data = `video_url=${encodeURIComponent(video.url)}`;
 
     // API endpoint where we send form data.
-    const endpoint = `${process.env.REMOTE_HOST}/start_video`;
+    const endpoint = `${remoteContext.remoteHost}/start_video`;
 
     // Form the request for sending data to the server.
     const options = {
