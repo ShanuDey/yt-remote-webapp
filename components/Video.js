@@ -9,7 +9,8 @@ export const Video = ({ video }) => {
     const data = `video_url=${encodeURIComponent(video.url)}`;
 
     // API endpoint where we send form data.
-    const endpoint = 'http://localhost:8080/start_video';
+    const endpoint = `${process.env.REMOTE_HOST}/start_video`;
+    console.log(process.env.REMOTE_HOST);
 
     // Form the request for sending data to the server.
     const options = {
