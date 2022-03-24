@@ -18,7 +18,6 @@ export const Search = () => {
 
     // Send the data to the server in JSON format.
     const JSONdata = JSON.stringify(data);
-    console.log('jsonData', JSONdata);
 
     // API endpoint where we send form data.
     const endpoint = '/api/searchVideos';
@@ -41,7 +40,6 @@ export const Search = () => {
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
     const result = await response.json();
-    console.log(result);
     videosContext.setVideos(result);
   };
 
