@@ -2,6 +2,15 @@ import React from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
 export const Header = () => {
+  const handleClick = async (e, path) => {
+    if (path === '/reboot') {
+      await fetch(`${process.env.REMOTE_HOST}/reboot`);
+    }
+    if (path === '/shutdown') {
+      await fetch(`${process.env.REMOTE_HOST}/shutdown`);
+    }
+  };
+
   return (
     <Navbar bg='light' expand='lg'>
       <Container>
@@ -12,9 +21,19 @@ export const Header = () => {
             <Nav.Link href='#home'>Home</Nav.Link>
             <Nav.Link href='#link'>Remote Setup</Nav.Link>
             <NavDropdown title='Settings' id='basic-nav-dropdown'>
-              <NavDropdown.Item href='#action/3.1'>Reboot</NavDropdown.Item>
+              <NavDropdown.Item
+                href='/'
+                onClick={(e) => handleClick(e, '/reboot')}
+              >
+                Reboot
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href='#action/3.3'>Shutdown</NavDropdown.Item>
+              <NavDropdown.Item
+                href='/'
+                onClick={(e) => handleClick(e, '/shutdown')}
+              >
+                Shutdown
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
