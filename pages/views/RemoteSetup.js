@@ -4,12 +4,14 @@ import Head from 'next/head';
 import { Header } from '../../components/Header';
 import { Form, FormControl, Card, Button } from 'react-bootstrap';
 import { LOCAL_STORAGE_KEY } from '../index';
+import ConfirmButton from '../../components/ConfirmButton';
 
 const RemoteSetup = () => {
   const handleSetupRemoteHost = (event) => {
     event.preventDefault();
     const remoteHostAddress = event.target.remoteHostAddress.value;
     localStorage.setItem(LOCAL_STORAGE_KEY, remoteHostAddress);
+    console.log('savelog:', confirm('Do you want to save?') ? 'yes' : 'no');
   };
 
   return (
@@ -42,6 +44,12 @@ const RemoteSetup = () => {
                 </Button>
               </Form>
             </Card.Body>
+            <ConfirmButton
+              handleCancel={() => alert('cancel')}
+              handleOkay={() => alert('okay')}
+            >
+              MyButton
+            </ConfirmButton>
           </Card>
           <div className='container mt-5'></div>
         </div>
