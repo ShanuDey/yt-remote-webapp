@@ -50,7 +50,11 @@ export const Search = () => {
   };
 
   const handleCloseVideo = async () => {
-    await fetch(`${remoteContext.remoteHost}/close_video`);
+    await toast.promise(fetch(`${remoteContext.remoteHost}/close_video`), {
+      pending: 'Closing video ...',
+      success: 'Video Closed 👌',
+      error: 'Failed to close video 🤯',
+    });
   };
 
   return (
