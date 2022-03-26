@@ -5,13 +5,15 @@ import { Header } from '../../components/Header';
 import { Form, FormControl, Card, Button } from 'react-bootstrap';
 import { LOCAL_STORAGE_KEY } from '../index';
 import ConfirmButton from '../../components/ConfirmButton';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RemoteSetup = () => {
   const handleSetupRemoteHost = (event) => {
     event.preventDefault();
     const remoteHostAddress = event.target.remoteHostAddress.value;
     localStorage.setItem(LOCAL_STORAGE_KEY, remoteHostAddress);
-    console.log('savelog:', confirm('Do you want to save?') ? 'yes' : 'no');
+    toast.success('New remote host saved');
   };
 
   return (
@@ -21,7 +23,6 @@ const RemoteSetup = () => {
         <meta name='description' content='YT remote web application' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
       <main>
         <Header />
         <div className='container mt-5'>
@@ -47,6 +48,7 @@ const RemoteSetup = () => {
           </Card>
         </div>
       </main>
+      <ToastContainer position='bottom-center' />
     </div>
   );
 };
