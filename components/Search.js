@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Form, FormControl, Button, Card } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import { RemoteContext } from '../contexts/RemoteContext';
 import { VideosContext } from '../contexts/VideosContext';
 import ConfirmButton from './ConfirmButton';
@@ -36,7 +37,11 @@ export const Search = () => {
     };
 
     // Send the form data to our forms API on Vercel and get a response.
-    const response = await fetch(endpoint, options);
+    const response = await toast.promise(fetch(endpoint, options), {
+      pending: 'searching in youtube ...',
+      success: 'Found videos in youtube 👌',
+      error: 'Failed to get videos from youtube 🤯',
+    });
 
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
