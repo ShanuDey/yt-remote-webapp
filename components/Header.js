@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useContext } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { toast } from 'react-toastify';
@@ -20,7 +21,12 @@ export const Header = () => {
   return (
     <Navbar bg='light' expand='lg'>
       <Container>
-        <Navbar.Brand href='/'>YT Remote</Navbar.Brand>
+        <Navbar.Brand href='/'>
+          <div className='d-inline-block align-top me-2'>
+            <Image alt='Logo' src='/icon-512x512.png' width='30' height='30' />
+          </div>
+          YT Remote
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='me-auto'>
