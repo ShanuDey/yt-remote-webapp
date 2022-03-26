@@ -32,7 +32,7 @@ const RemoteSetup = () => {
               <Form onSubmit={handleSetupRemoteHost}>
                 <Card.Text>
                   <FormControl
-                    type='remote_host'
+                    type='url'
                     className='text-center'
                     placeholder='Remote Host Address'
                     aria-label='Remote Host'
@@ -44,14 +44,7 @@ const RemoteSetup = () => {
                 </Button>
               </Form>
             </Card.Body>
-            <ConfirmButton
-              handleCancel={() => alert('cancel')}
-              handleOkay={() => alert('okay')}
-            >
-              MyButton
-            </ConfirmButton>
           </Card>
-          <div className='container mt-5'></div>
         </div>
       </main>
     </div>
