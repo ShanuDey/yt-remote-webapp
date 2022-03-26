@@ -7,9 +7,27 @@ const ConfirmButton = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleNoButton = () => {
+    if (props.handleNo) {
+      props.handleNo();
+    }
+    handleClose();
+  };
+
+  const handleYesButton = () => {
+    if (props.handleYes) {
+      props.handleYes();
+    }
+    handleClose();
+  };
+
   return (
     <>
-      <Button variant='primary' onClick={handleShow}>
+      <Button
+        variant={props.variant}
+        className={props.className}
+        onClick={handleShow}
+      >
         {props.children}
       </Button>
 
@@ -19,21 +37,11 @@ const ConfirmButton = (props) => {
         </Modal.Header>
         <Modal.Body>{props.body || 'Are you sure?'}</Modal.Body>
         <Modal.Footer>
-          <Button
-            variant='danger'
-            onClick={() => {
-              props.handleCancel(), handleClose();
-            }}
-          >
-            {props.cancelButtonText || 'Cancel'}
+          <Button variant='danger' onClick={handleNoButton}>
+            {props.noButtonText || 'No'}
           </Button>
-          <Button
-            variant='success'
-            onClick={() => {
-              props.handleOkay(), handleClose();
-            }}
-          >
-            {props.okayButtonText || 'Save'}
+          <Button variant='success' onClick={handleYesButton}>
+            {props.yesButtonText || 'Yes'}
           </Button>
         </Modal.Footer>
       </Modal>
