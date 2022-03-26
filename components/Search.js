@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Form, FormControl, Button } from 'react-bootstrap';
+import { Form, FormControl, Button, Card } from 'react-bootstrap';
 import { RemoteContext } from '../contexts/RemoteContext';
 import { VideosContext } from '../contexts/VideosContext';
 import ConfirmButton from './ConfirmButton';
@@ -50,27 +50,34 @@ export const Search = () => {
 
   return (
     <div className='container mt-5'>
-      <Form className='d-flex' onSubmit={handleSearch}>
-        <FormControl
-          type='search'
-          placeholder='Search Youtube Videos'
-          className='me-2'
-          aria-label='Search'
-          id='searchInput'
-        />
-        <Button variant='outline-success' type='submit'>
-          Search
-        </Button>
-        <ConfirmButton
-          className='ms-2'
-          variant='outline-danger'
-          handleYes={handleCloseVideo}
-          title={'Close Video'}
-          body={'Do you want to close the currently playing video?'}
-        >
-          Close
-        </ConfirmButton>
-      </Form>
+      <Card className='text-center' border='info'>
+        <Card.Header>Search Youtube Videos</Card.Header>
+        <Card.Body>
+          <Form onSubmit={handleSearch}>
+            <Card.Text>
+              <FormControl
+                type='search'
+                placeholder='Example: Tom and Jerry'
+                className='text-center'
+                aria-label='Search'
+                id='searchInput'
+              />
+            </Card.Text>
+            <Button variant='outline-success' type='submit'>
+              Search
+            </Button>
+            <ConfirmButton
+              className='ms-2'
+              variant='outline-danger'
+              handleYes={handleCloseVideo}
+              title={'Close Video'}
+              body={'Do you want to close the currently playing video?'}
+            >
+              Close Video
+            </ConfirmButton>
+          </Form>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
