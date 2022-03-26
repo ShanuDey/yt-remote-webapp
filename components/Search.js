@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import { RemoteContext } from '../contexts/RemoteContext';
 import { VideosContext } from '../contexts/VideosContext';
+import ConfirmButton from './ConfirmButton';
 
 export const Search = () => {
   const remoteContext = useContext(RemoteContext);
@@ -60,13 +61,15 @@ export const Search = () => {
         <Button variant='outline-success' type='submit'>
           Search
         </Button>
-        <Button
-          variant='outline-danger'
+        <ConfirmButton
           className='ms-2'
-          onClick={handleCloseVideo}
+          variant='outline-danger'
+          handleYes={handleCloseVideo}
+          title={'Close Video'}
+          body={'Do you want to close the currently playing video?'}
         >
           Close
-        </Button>
+        </ConfirmButton>
       </Form>
     </div>
   );
