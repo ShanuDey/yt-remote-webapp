@@ -22,7 +22,7 @@ export const Header = () => {
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='me-auto'>
             <Nav.Link href='/'>Home</Nav.Link>
-            <Nav.Link href='/views/RemoteSetup'>Remote Setup</Nav.Link>
+            <Nav.Link href='/views/remote_setup'>Remote Setup</Nav.Link>
             <NavDropdown title='Settings' id='basic-nav-dropdown'>
               <NavDropdown.Item
                 href='/'
