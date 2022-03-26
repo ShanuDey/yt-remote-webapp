@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useContext } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { RemoteContext } from '../contexts/RemoteContext';
@@ -31,9 +32,16 @@ export const Video = ({ video }) => {
 
   return (
     <Card border='primary'>
-      <Card.Img variant='top' src={video.thumbnail} />
+      {/* <Card.Img variant='top' src={video.thumbnail} /> */}
+      <Image
+        src={video.thumbnail}
+        alt={'Video Thumbnail'}
+        height={720}
+        width={1280}
+        layout='responsive'
+      />
       <Card.Body>
-        <Card.Title>{video.title}</Card.Title>
+        <Card.Title>{video.title.slice(0, 40)}...</Card.Title>
         <Card.Text>{video.description.slice(0, 50)}...</Card.Text>
         <div className='text-end'>
           <Button variant='success' onClick={handleVideoPlay}>

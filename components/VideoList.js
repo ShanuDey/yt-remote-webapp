@@ -8,7 +8,7 @@ export const VideoList = () => {
 
   return (
     <div className='container mt-5'>
-      <Row xs={1} md={2} className='g-4'>
+      <Row xs={1} sm={2} md={4} className='g-4'>
         {videosContext.videos.map((video) => (
           <Col key={video.videoId}>
             <Video video={video} />
