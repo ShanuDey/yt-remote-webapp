@@ -1,6 +1,14 @@
 import Image from 'next/image';
 import React, { useContext } from 'react';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import {
+  Navbar,
+  Container,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+} from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { RemoteContext } from '../contexts/RemoteContext';
 
@@ -16,6 +24,35 @@ export const Header = () => {
       await fetch(`${remoteContext.remoteHost}/shutdown`);
       toast.error('Shutting Down...');
     }
+  };
+
+  const handlePlayVideoByLink = async (event) => {
+    event.preventDefault();
+    const url = event.target.yt_video_link.value;
+    event.target.yt_video_link.value = '';
+    const data = `video_url=${encodeURIComponent(url)}`;
+
+    // API endpoint where we send form data.
+    const endpoint = `${remoteContext.remoteHost}/start_video`;
+
+    // Form the request for sending data to the server.
+    const options = {
+      // The method is POST because we are sending data.
+      method: 'POST',
+      // Tell the server we're sending JSON.
+      headers: {
+        // 'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+      },
+      // Body of the request is the JSON data we created above.
+      body: data,
+    };
+    await toast.promise(fetch(endpoint, options), {
+      pending: 'Loading video ...',
+      success: 'Video Found 👌',
+      error: 'Failed to start video 🤯',
+    });
   };
 
   return (
@@ -42,6 +79,18 @@ export const Header = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <Form className='d-flex' onSubmit={handlePlayVideoByLink}>
+            <FormControl
+              type='url'
+              placeholder='YT Video Link'
+              className='me-2'
+              id='yt_video_link'
+              aria-label='Search'
+            />
+            <Button variant='outline-secondary' type='submit'>
+              Play
+            </Button>
+          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
